@@ -15,7 +15,7 @@ class Node():
 
 def find_path(maze, start, end):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
-
+    print("in the function")
     # Create start and end node
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -39,6 +39,7 @@ def find_path(maze, start, end):
             if item.f < current_node.f:
                 current_node = item
                 current_index = index
+    
 
         # Pop current off open list, add to closed list
         open_list.pop(current_index)
@@ -52,10 +53,11 @@ def find_path(maze, start, end):
                 path.append(current.position)
                 current = current.parent
             return path[::-1] # Return reversed path
+    
 
         # Generate children
         children = []
-        for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]: # Adjacent squares
+        for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0)]: # Adjacent squares
 
             # Get node position
             node_position = (current_node.position[0] + new_position[0], current_node.position[1] + new_position[1])
