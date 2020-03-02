@@ -29,9 +29,12 @@ def find_path(maze, start, end):
     # Add the start node
     open_list.append(start_node)
 
+    Max_it = 200
+    no_it = 0
     # Loop until you find the end
-    while len(open_list) > 0:
-
+    while len(open_list) and no_it < Max_it:
+        no_it += 1
+        print(no_it)
         # Get the current node
         current_node = open_list[0]
         current_index = 0
@@ -96,6 +99,11 @@ def find_path(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-
+    path = []
+    current = current_node
+    while current is not None:
+        path.append(current.position)
+        current = current.parent
+    return path[::-1]
 if __name__ == '__main__':
     main()
