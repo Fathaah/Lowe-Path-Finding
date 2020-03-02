@@ -21,6 +21,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+from custom_qr import GetCORD
 Window.size = (1080 / 4,2160 / 4)
 dims = Window.size
 print(dims)
@@ -34,6 +35,8 @@ width_limit = 132
 addresses = {}
 items_to_buy = []
 current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
+bar_loc = [(60,30), 0, (-1,-1), (-1,-1)]
+bar = 0
 
 def L2_dis(a, b):
     print(a)
@@ -107,9 +110,15 @@ class Main_Box(Scatter):
         # print((self.junc_points))
         self.img = np.asarray(self.img[:,:,1] < 200 ).astype(np.uint)
         self.dot_path = []
+
     def Scan_loc(self, temp):
+        global bar
+        global bar_loc
+        bar_loc = [GetCORD(), 0, (-1,-1), (-1,-1)]
         print("Barcode Scanning")
         #Update start Location
+        print(bar_loc)
+        bar = 1
 
     def on_transform_with_touch(self,touch):
         
@@ -122,13 +131,20 @@ class Main_Box(Scatter):
             self._set_pos((self.bbox[0][0],width_limit))
         if(self.bbox[0][1] < -width_limit):
             self._set_pos((self.bbox[0][0],-width_limit))
-        with self.canvas:
-            Color(1.0,0,0)
-            e = Ellipse(pos = (0,0), size=(10, 10))
+        # with self.canvas:
+        #     Color(1.0,0,0)
+        #     e = Ellipse(pos = (0,0), size=(10, 10))
     def FindPath(self):
         global current_loc
-        #current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
-        print(items_to_buy)
+        global bar_loc
+        global bar
+        if (bar==0):
+            current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
+        else:
+            current_loc = bar_loc
+        print(current_loc)
+        print(bar)
+        print(bar_loc)
         item_pick_up = items_to_buy.copy()
         flag = 0
         print('removed')
@@ -172,7 +188,7 @@ class Main_Box(Scatter):
         if current_loc[2] == (-1,-1):
             #Go to the loc of the shelf then to the item loc
             print(dest_loc)
-            print(current_loc)
+            #print(current_loc)
             enter_shelf_loc = dest_loc[2] if L2_dis(dest_loc[2],current_loc[0]) < L2_dis(dest_loc[3],current_loc[0]) else dest_loc[3]
             path1 = astar.find_path(self.img,current_loc[0],enter_shelf_loc)
             path2 = astar.find_path(self.img,enter_shelf_loc, dest_loc[0])
@@ -224,7 +240,7 @@ class TestApp(App):
         scatter = Main_Box(do_rotation = False,auto_bring_to_front =False, do_translation_y=False)
         popup = DisplayList(title='Shopping List ',
         size_hint=(.75, .75 ))
-        t = InputManager(scatter,popup, text = 'Hello world',multiline = False, size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':1 - .08})
+        t = InputManager(scatter,popup, text = 'Enter items',multiline = False, size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':1 - .08})
         #btn1 = Button(text = 'Find Path', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.08})
         btn2 = Button(text = 'Shopping List', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.08})
         btn3 = Button(text = 'Scan and Get Position', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.18})
