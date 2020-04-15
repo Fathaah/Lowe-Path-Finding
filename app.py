@@ -21,7 +21,6 @@ from functools import partial
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
-from custom_qr import GetCORD
 Window.size = (1080 / 4,2160 / 4)
 dims = Window.size
 print(dims)
@@ -35,7 +34,6 @@ width_limit = 132
 addresses = {}
 items_to_buy = []
 current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
-bar_loc = [(60,30), 0, (-1,-1), (-1,-1)]
 bar = 0
 
 def L2_dis(a, b):
@@ -72,6 +70,7 @@ class DataHandler():
         #Get address from the DB and append to the addresses
         self.main.FindPath()
         print(items_to_buy)
+        current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
 
 
 class DisplayList(Popup):
@@ -97,7 +96,7 @@ class Main_Box(Scatter):
         #self.on_transform_with_touch(self.check_pos)
         self.img = cv2.imread('p_map3.jpg')
         self.img = cv2.resize(self.img, (64,64))
-        self.img_markers = cv2.imread('marker_map.jpg', 0)
+        #self.img_markers = cv2.imread('marker_map.jpg', 0)
         #self.img_markers = np.asarray(self.img[:,:] > 200 ).astype(np.uint)
         # plt.imshow(self.img_markers, cmap = 'gray')
         # plt.show()
@@ -110,15 +109,9 @@ class Main_Box(Scatter):
         # print((self.junc_points))
         self.img = np.asarray(self.img[:,:,1] < 200 ).astype(np.uint)
         self.dot_path = []
-
     def Scan_loc(self, temp):
-        global bar
-        global bar_loc
-        bar_loc = [GetCORD(), 0, (-1,-1), (-1,-1)]
         print("Barcode Scanning")
         #Update start Location
-        print(bar_loc)
-        bar = 1
 
     def on_transform_with_touch(self,touch):
         
@@ -136,15 +129,8 @@ class Main_Box(Scatter):
         #     e = Ellipse(pos = (0,0), size=(10, 10))
     def FindPath(self):
         global current_loc
-        global bar_loc
-        global bar
-        if (bar==0):
-            current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
-        else:
-            current_loc = bar_loc
-        print(current_loc)
-        print(bar)
-        print(bar_loc)
+        current_loc = [(60,30), 0, (-1,-1), (-1,-1)]
+        print(items_to_buy)
         item_pick_up = items_to_buy.copy()
         flag = 0
         print('removed')
@@ -179,7 +165,7 @@ class Main_Box(Scatter):
                     #(x - 133,y)
                 Color(0,1,0)
                 self.dot_path.append(Ellipse(pos = ((path[-1][1] * 540 / 64) - 133,((64 - path[-1][0]) * 540 / 64) - 6 ), size=(5, 5)))
-            (self.canvas.add(Rectangle(pos = ((path[-1][1] * 540 / 64) - 133 - texture.size[0] / 2,((64 - path[-1][0]) * 540 / 64) - 6 + 10), texture=texture, size=texture_size)))
+            #(self.canvas.add(Rectangle(pos = ((path[-1][1] * 540 / 64) - 133 - texture.size[0] / 2,((64 - path[-1][0]) * 540 / 64) - 6 + 10), texture=texture, size=texture_size)))
             #self.add_widget(Label(text = near_item, pos = (7 + (path[-1][1] * 540 / 64) - 133,((64 - path[-1][0]) * 540 / 64) - 6 )))
             if flag:
                 break
@@ -188,7 +174,7 @@ class Main_Box(Scatter):
         if current_loc[2] == (-1,-1):
             #Go to the loc of the shelf then to the item loc
             print(dest_loc)
-            #print(current_loc)
+            print(current_loc)
             enter_shelf_loc = dest_loc[2] if L2_dis(dest_loc[2],current_loc[0]) < L2_dis(dest_loc[3],current_loc[0]) else dest_loc[3]
             path1 = astar.find_path(self.img,current_loc[0],enter_shelf_loc)
             path2 = astar.find_path(self.img,enter_shelf_loc, dest_loc[0])
@@ -240,7 +226,7 @@ class TestApp(App):
         scatter = Main_Box(do_rotation = False,auto_bring_to_front =False, do_translation_y=False)
         popup = DisplayList(title='Shopping List ',
         size_hint=(.75, .75 ))
-        t = InputManager(scatter,popup, text = 'Enter items',multiline = False, size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':1 - .08})
+        t = InputManager(scatter,popup, text = 'Enter item',multiline = False, size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':1 - .08})
         #btn1 = Button(text = 'Find Path', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.08})
         btn2 = Button(text = 'Shopping List', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.08})
         btn3 = Button(text = 'Scan and Get Position', size_hint=(.8, .05 ),pos_hint={'x':.5 - 0.8 / 2, 'y':.18})

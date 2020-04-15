@@ -15,7 +15,7 @@ class Node():
 
 def find_path(maze, start, end):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
-    print("in the function")
+    #print("in the function")
     # Create start and end node
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -29,12 +29,12 @@ def find_path(maze, start, end):
     # Add the start node
     open_list.append(start_node)
 
-    Max_it = 200
+    Max_it = 500
     no_it = 0
     # Loop until you find the end
     while len(open_list) and no_it < Max_it:
         no_it += 1
-        print(no_it)
+        #print(no_it)
         # Get the current node
         current_node = open_list[0]
         current_index = 0
