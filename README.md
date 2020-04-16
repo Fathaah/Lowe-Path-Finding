@@ -67,6 +67,14 @@ In certain conditions the A star alorithm gets trapped, this happens only when t
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/e.PNG)
 
 
+ADDED:
+
+Pop up messages for interactive communication with the customer:
+
+
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/7.PNG)
+
+
 ## Known issues
 
 * The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given.
