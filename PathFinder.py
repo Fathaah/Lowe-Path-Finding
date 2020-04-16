@@ -6,7 +6,7 @@ class PathFinder():
 	def __init__(self, window_size):
 
 		self.window_size = window_size
-		self.img = cv2.imread('p_map.jpg')
+		self.img = cv2.imread('p_map3.jpg')
 		self.img = cv2.resize(self.img, (64,64))
 		self.img = cv2.erode(self.img, np.ones((2,2)), iterations=1) 
 		self.img = np.asarray(self.img[:,:,1] < 200 ).astype(np.uint)
