@@ -13,6 +13,7 @@ from PathFinder import *
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from functools import partial 
+import csv
 Config.set('graphics', 'resizable', True) 
 Window.size = (2160 / 4,2160 / 4)
 dims = Window.size
@@ -39,9 +40,10 @@ class MainLayout(FloatLayout):
 class DataHandler():
     def __init__(self, map, popup):
         self.shopping_list = []
-        self.items_dict = {'entrance': [(60,30), 0, (-1,-1), (-1,-1)],'check_out':[(23,4), 0, (23,4), (23,4)],
-         'hammer' : [(20, 50), 0, (20, 50), (20, 50)], 'paint': [(29,10),0,(29,0), (29,25) ], 
-         'wood' : [(8, 40), 1, (8,36), (8,47)], 'nails': [(47,10),0,(47,0), (47,25)], 'saw': [(12,28), 0, (20, 28), (1, 28)]}
+        self.items_dict = load_data()
+        # self.items_dict = {'entrance': [(60,30), 0, (-1,-1), (-1,-1)],'check_out':[(23,4), 0, (23,4), (23,4)],
+        #  'hammer' : [(20, 50), 0, (20, 50), (20, 50)], 'paint': [(29,10),0,(29,0), (29,25) ], 
+        #  'wood' : [(8, 40), 1, (8,36), (8,47)], 'nails': [(47,10),0,(47,0), (47,25)], 'saw': [(12,28), 0, (20, 28), (1, 28)]}
         self.path_finder = PathFinder(dims)
         self.path = []
         self.map = map
@@ -100,10 +102,17 @@ class DisplayList(Popup):
             content.add_widget(btn)
         self.content = content
 
-
-        
-
-
+def load_data():
+    item_dict = {}
+    div = 2
+    with open('data.csv', newline='\n') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for i, line in enumerate(reader):
+            print(line['item_name'])
+            item_dict[line['item_name']] = [(int(line['x']) // div,int(line['y']) // div),int(line['heavy']),(int(line['shelf_x1']) // div
+            ,int(line['shelf_y1']) // div),(int(line['shelf_x2']) // div, int(line['shelf_y2']) // div), line['pot_buy']] 
+    print(item_dict)
+    return item_dict
 if __name__ == "__main__":
     Main_segment().run()
 

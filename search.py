@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import *
 class SearchBar(TextInput):
     def __init__(self,data_handler,message_popup, **kwargs):
         super().__init__(**kwargs)
@@ -14,12 +15,13 @@ class SearchBar(TextInput):
         self.dropdown = DropDown()
         self.message_popup = message_popup
         #self.add_widget(DropDown)
-        for i in data_handler.items_dict.items():
-            print(i)
-            btn = Button(text= i[0], size_hint_y=None, height=20)
-            btn.bind(on_release = lambda btn: self.data_handler.add_element([btn.text] + data_handler.items_dict[btn.text]))
-            self.dropdown.add_widget(btn)
-        
+        for _, i in enumerate(data_handler.items_dict.items()):
+            
+            if _ > 2:
+                print(i)
+                btn = Button(text= i[0], size_hint_y=None, height=20)
+                btn.bind(on_release = lambda btn: self.data_handler.add_element([btn.text] + data_handler.items_dict[btn.text]))
+                self.dropdown.add_widget(btn)
 
     def on_enter(instance,value):
         #print(instance.text)
