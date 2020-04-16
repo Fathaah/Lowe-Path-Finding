@@ -1,6 +1,6 @@
 # Lowe's hackathon
 
-**Problem Statment**:Build a solution to help the customers find products in the store and help them navigate to the corresponding aisle/shelf. If there is a shopping list, provide the best shopping trip to complete the purchases
+**Problem Statment**: Build a solution to help the customers find products in the store and help them navigate to the corresponding aisle/shelf. If there is a shopping list, provide the best shopping trip to complete the purchases.
 
 
 ## Proposed Solution
@@ -17,7 +17,7 @@ There is also another map the path finding algorithm uses to avoid obstacles and
 
 ![Obstacle Map](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/p_map3.jpg)
 
-An advantage of such an approach is the scalability of such a program, since Lowe is having more than 2000 stores such an approach minimizes the need of further fine tuning the program for each store. If there is a floor plan and a map as shown above, the application can be easily scaled.
+An advantage of such an approach is the scalability of the solution, since Lowe is having more than 2000 stores such an approach minimizes the need of further fine tuning the program for each store. If there is a floor plan and a map as shown above, the application can be easily scaled.
 
 A list of items and its position was arbitrarily choosen to set up a testing environment for the program, these items along with the positional info can be found in *data.csv*.
 
@@ -44,11 +44,27 @@ python main.py
 
 The starting screen of the application is shown below:
 
+![Starting Screen](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/1.PNG)
+
 There is a search bar, then a shopping list button to see the items currently on the list.
+
+
+![Shopping List](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/3.PNG)
 
 Once the Searchbar is clicked a dropdown menu appears with various choices of items the customer can buy or type in the item they need.
 
-Once the item/items are selected the algorithm devices a plaussible route through the shop to pick the items up.
+
+![DropDown](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/2.PNG)
+
+
+Once the item/items are selected the algorithm devices a plaussible route through the shop to pick the items up. Below are few examples of the routes generated.
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/4.PNG)
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/5.PNG)
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/6.PNG)
+
+In certain conditions the A star alorithm gets trapped, this happens only when the direction towards the item or object is blocked by an obstacle when it is in the open, meaning outside shelves.
+
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/e.PNG)
 
 
 ## Known issues
@@ -73,6 +89,6 @@ Once the item/items are selected the algorithm devices a plaussible route throug
 
 ## NOTES
 
-Currently the customer localization is implemented in the previous version of the code, through barcode scanning of any nearby items or barcodes specifically designed for localizing the customer in the store.
+Currently the customer localization is implemented in the previous version of the code, through barcode scanning of any nearby items or barcodes specifically designed for localizing the customer in the store. A possibility of a vision based system is being studied, using cues deligently palced in the stores to detect customers current location.
 
 
