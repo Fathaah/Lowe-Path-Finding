@@ -77,7 +77,7 @@ Pop up messages for interactive communication with the customer:
 
 ## Known issues
 
-* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given.
+* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given. Selecting Soil first will demonstrate this issue.
 
 * There is small issues with the positioning of items making the route a bit chaotic. 
 
