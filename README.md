@@ -5,7 +5,7 @@
 
 ## Proposed Solution
 
-The solution is based on a modified A star path finding algorithm to find the best possible path to collect all the necessary items one needs to buy. Currently the order of the item to be bought is solely based on the distance from the users current position.
+The solution is based on a modified A star path finding algorithm to find the best possible path to collect all the necessary items one needs to buy. Currently the order of the item to be bought is solely based on the distance from the users current position. [Change log](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/Changes.md) for this project is attached.
 
 ### Setting up of the problem
 
