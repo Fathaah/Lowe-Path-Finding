@@ -12,8 +12,8 @@ and this project is done by [@Abdul Fathaah](https://github.com/Fathaah) and [@V
 - A star alogrithm to find path to the location by [@Abdul Fathaah](https://github.com/Fathaah).
 - Search Bar by [@Abdul Fathaah](https://github.com/Fathaah).
 - Shopping List by [@Abdul Fathaah](https://github.com/Fathaah).
-- Barcode scanning by [@Vedanth Mahalle](http://github.com).
-- Presentation by [@Vedanth Mahalle](http://github.com).
+- Barcode scanning by [@Vedanth Mahalle](https://github.com/vedantmahalle21).
+- Presentation by [@Vedanth Mahalle](https://github.com/vedantmahalle21).
 - Document file demonstrating the working of the app by [@Abdul Fathaah](https://github.com/Fathaah).
 
 ## Version 0.2
