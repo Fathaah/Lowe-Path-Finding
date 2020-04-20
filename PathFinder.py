@@ -24,42 +24,25 @@ class PathFinder():
 		path = []
 		self.idx = []
 		self.idx_name = []
-		self.heavy = []
-		#for light items
 		for i in range(len(item_pick_up)):
 			#print(near_item)
 			#for e in items_to_buy:
 				#print(e.item_name)
 			#near_item = self.find_nearest(self.current_loc[0],item_pick_up)
 			item_pick_up.sort(key=lambda x: self.L2_dis(self.current_loc[0], x.pos))
-			if(item_pick_up[0].heavy != 1):	
-				path = path + self.get_path(self.current_loc,item_pick_up[0])
-				#item_pick_up.remove(item_pick_up[near_item])
-				self.idx.append(len(path))
-				self.idx_name.append(item_pick_up[0].item_name)
-				self.heavy.append(0)
-				self.current_loc = [item_pick_up[0].pos, 0, item_pick_up[0].pos_1, item_pick_up[0].pos_2]
-				print('pick up ', i, ' ' + item_pick_up[0].item_name)
-				item_pick_up.pop(0)
-				#print(self.current_loc)
+			path = path + self.get_path(self.current_loc,item_pick_up[0])
+			#item_pick_up.remove(item_pick_up[near_item])
+			self.idx.append(len(path))
+			self.idx_name.append(item_pick_up[0].item_name)
+			self.current_loc = [item_pick_up[0].pos, 0, item_pick_up[0].pos_1, item_pick_up[0].pos_2]
+			print('pick up ', i, ' ' + item_pick_up[0].item_name)
+			item_pick_up.pop(0)
+			#print(self.current_loc)
 			#item_pick_up.pop(near_item)
 			#print(near_item)
 		#print(items_to_buy[-1].pos)
 		#path = path + self.get_path(self.current_loc,items_to_buy[-1])
-		#for heavy items
-		for i in range(len(item_pick_up)):
-			item_pick_up.sort(key=lambda x: self.L2_dis(self.current_loc[0], x.pos))
-			if(item_pick_up[0].heavy == 1):	
-				path = path + self.get_path(self.current_loc,item_pick_up[0])
-				#item_pick_up.remove(item_pick_up[near_item])
-				self.idx.append(len(path))
-				self.idx_name.append(item_pick_up[0].item_name)
-				self.heavy.append(1)
-				self.current_loc = [item_pick_up[0].pos, 0, item_pick_up[0].pos_1, item_pick_up[0].pos_2]
-				print('pick up ', i, ' ' + item_pick_up[0].item_name)
-				item_pick_up.pop(0)
-		
-		return path, self.idx, self.idx_name, self.heavy
+		return path, self.idx, self.idx_name
 	def get_path(self, current_loc, dest_loc):
 		#Case 1: The current loc is in the open, not between shelves
 		if current_loc[2] == (-1,-1):
