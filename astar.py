@@ -29,7 +29,7 @@ def find_path(maze, start, end):
     # Add the start node
     open_list.append(start_node)
 
-    Max_it = 1000
+    Max_it = 800
     no_it = 0
     # Loop until you find the end
     while len(open_list) and no_it < Max_it:
