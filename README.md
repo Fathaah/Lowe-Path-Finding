@@ -89,7 +89,7 @@ Pop up messages for interactive communication with the customer:
 - [x] Security Loop
 - [x] Create new and modified better map.
 - [x] Messages on map like suggestions and detours. 
-- [x] Heavy items are to planned to be picked up later on.
+- [ ] Heavy items are to planned to be picked up later on.
 - [ ] Customer localization.
 - [ ] Reduce the frequency of change in direction, keep the paths straight.
 - [ ] Suggestions on what the customer might need, like if he buys screws it's very likely he might need a screwdriver.
