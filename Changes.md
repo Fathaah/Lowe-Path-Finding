@@ -27,3 +27,5 @@ and this project is done by [@Abdul Fathaah](https://github.com/Fathaah) and [@V
 - Popup message added by [@Abdul Fathaah](https://github.com/Fathaah).
 - New data added and a file data.csv was made to store data related details by [@Abdul Fathaah](https://github.com/Fathaah).
 - New README added to the project by [@Abdul Fathaah](https://github.com/Fathaah).
+- Heavy items will now be planned to be picked up in the end, done by [@Vedanth Mahalle](https://github.com/vedantmahalle21).
+- Popup will appear to inform the customer on picking up the item in the end by [@Vedanth Mahalle](https://github.com/vedantmahalle21).
