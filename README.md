@@ -62,7 +62,7 @@ Once the item/items are selected the algorithm devices a plaussible route throug
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/5.PNG)
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/6.PNG)
 
-In certain conditions the A star alorithm gets trapped, this happens only when the direction towards the item or object is blocked by an obstacle when it is in the open, meaning outside shelves.
+In certain conditions the A star alorithm gets trapped, this happens only when the direction towards the item or object is blocked by an obstacle when it is in the open, meaning outside shelves. This is easily solved by letting the program explore more possible routes, this increases the time for finding the path.
 
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/e.PNG)
 
@@ -77,7 +77,7 @@ Pop up messages for interactive communication with the customer:
 
 ## Known issues
 
-* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given. Selecting Soil first will demonstrate this issue.
+* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given. Selecting Soil first will demonstrate this issue. This is easily solved by letting the program explore more possible routes, this increases the time for finding the path.
 
 * There is small issues with the positioning of items making the route a bit chaotic. 
 
