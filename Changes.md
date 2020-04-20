@@ -27,3 +27,4 @@ and this project is done by [@Abdul Fathaah](https://github.com/Fathaah) and [@V
 - Popup message added by [@Abdul Fathaah](https://github.com/Fathaah).
 - New data added and a file data.csv was made to store data related details by [@Abdul Fathaah](https://github.com/Fathaah).
 - New README added to the project by [@Abdul Fathaah](https://github.com/Fathaah).
+- Heavy items are planned to be picked up towards the end, by [@Vedanth Mahalle](https://github.com/vedantmahalle21).
