@@ -6,6 +6,7 @@ from kivy.graphics import *
 from kivy.core.window import Window
 from kivy.core.text import Label as CoreLabel
 from kivy.clock import Clock
+import numpy as np
 height_limit = 1500
 width_limit = 1500
 map_dim = 64
@@ -57,11 +58,15 @@ class Map(Scatter):
                 self.canvas.remove(dot)
             #self.remove_popup(self)
             self.dot_path = []
+        idx1 = [0] + idx
         with self.canvas:
-            Color(1.0, 0.0, 0.0)
-            for i in range(len(path)):
-                self.dot_path.append(Ellipse(pos = ((path[i][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[i][0]) * self.window_size[1] * 2 / map_dim) - 12), size=(10, 10)))
-                    #(x - 133,y)
+            for k in range(1, len(idx1), 1):
+                Color(np.clip(np.random.rand(), 0, .8), np.clip(np.random.rand(), 0, .8), np.clip(np.random.rand(), 0, .8))
+                for i in range(idx1[k - 1], idx1[k], 1):
+                    print(i)
+                    #Color(np.clip(0.2 + np.random.rand(), 0, 1), np.clip(0.2 + np.random.rand(), 0, 1), np.clip(0.2 + np.random.rand(), 0, 1))
+                    self.dot_path.append(Ellipse(pos = ((path[i][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[i][0]) * self.window_size[1] * 2 / map_dim) - 12), size=(10, 10)))
+                        #(x - 133,y)
             print(heavy)
             Color(0,1,0)
             print((idx))
@@ -78,6 +83,7 @@ class Map(Scatter):
                 self.dot_path.append(Rectangle(pos = ((path[idx[i] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2 - texture.size[0] / 2,((map_dim - path[idx[i] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12 - 10), texture=texture, size=texture_size))
                 self.dot_path.append(Rectangle(pos = ((path[idx[i] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2 - texture.size[0] / 2,((map_dim - path[idx[i] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12 - 10), texture=texture, size=texture_size))
             
-            if(heavy[-1]):
-                Color(240/255,240/235,255/255)
-                self.Message(((path[idx[-1] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[idx[-1] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12), msg = 'Items like ' + idx_name[-1]+' are categorised as heavy item,\nhence its planned  to be picked up \ntowards the end of the \nshopping trip')
+            if(heavy != []):
+                if(heavy[-1]):
+                    Color(240/255,240/235,255/255)
+                    self.Message(((path[idx[-1] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[idx[-1] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12), msg = 'Items like ' + idx_name[-1]+' are categorised as heavy item,\nhence its planned  to be picked up \ntowards the end of the \nshopping trip')
