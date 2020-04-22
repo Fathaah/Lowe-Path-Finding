@@ -1,7 +1,7 @@
 item_name,x,y,heavy,shelf_x1,shelf_y1,shelf_x2,shelf_y2,pot_buy
 entrance,120,64,0,-1,-1,-1,-1,None
-check_out_1,115,40,0,-1,-1,-1,-1,None
-check_out_2,115,95,0,-1,-1,-1,-1,None
+check_out_1,115,40,0,100,25,100,52,None
+check_out_2,115,95,0,100,73,100,100,None
 wood,23,28,1,2,31,44,31,saw
 saw,92,16,0,92,25,92,3
 vacuum cleaner,70,110,0,70,100,70,120

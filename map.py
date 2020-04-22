@@ -21,7 +21,6 @@ class Map(Scatter):
         with self.canvas:
             Color(1,1,1)
             Rectangle(source = 'Map4.jpg',pos = (-self.window_size[0] / 2, 0), size = (2  * self.window_size[0], 2 * self.window_size[1]))
-        
         self.dot_path = []
         #self.Message()
     def remove_popup(self, touch):
@@ -56,7 +55,7 @@ class Map(Scatter):
         if self.dot_path != []:
             for dot in self.dot_path:
                 self.canvas.remove(dot)
-            #self.remove_popup(self)
+            self.remove_popup(self.dot_path)
             self.dot_path = []
         idx1 = [0] + idx
         with self.canvas:
@@ -86,4 +85,4 @@ class Map(Scatter):
             if(heavy != []):
                 if(heavy[-1]):
                     Color(240/255,240/235,255/255)
-                    self.Message(((path[idx[-1] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[idx[-1] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12), msg = 'Items like ' + idx_name[-1]+' are categorised as heavy item,\nhence its planned  to be picked up \ntowards the end of the \nshopping trip')
+                    self.Message(((path[idx[-2] - 1][1] * self.window_size[0] * 2 / map_dim) - self.window_size[0] // 2,((map_dim - path[idx[-2] - 1][0]) * self.window_size[1] * 2 / map_dim) - 12), msg = 'Items like ' + idx_name[-2]+' are categorised as heavy item,\nhence its planned  to be picked up \ntowards the end of the shopping trip')

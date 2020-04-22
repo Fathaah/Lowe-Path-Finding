@@ -1,10 +1,10 @@
+import numpy as np
 class Node():
     """A node class for A* Pathfinding"""
 
     def __init__(self, parent=None, position=None):
         self.parent = parent
         self.position = position
-
         self.g = 0
         self.h = 0
         self.f = 0
@@ -29,7 +29,7 @@ def find_path(maze, start, end):
     # Add the start node
     open_list.append(start_node)
 
-    Max_it = 800
+    Max_it = 1000
     no_it = 0
     # Loop until you find the end
     while len(open_list) and no_it < Max_it:
@@ -49,7 +49,7 @@ def find_path(maze, start, end):
         closed_list.append(current_node)
 
         # Found the goal
-        if current_node == end_node:
+        if abs(current_node.position[0] - end_node.position[0]) <= 1 and abs(current_node.position[1] - end_node.position[1]) <= 1:
             path = []
             current = current_node
             while current is not None:
@@ -60,7 +60,7 @@ def find_path(maze, start, end):
 
         # Generate children
         children = []
-        for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0)]: # Adjacent squares
+        for new_position in [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (1,1)]: # Adjacent squares
 
             # Get node position
             node_position = (current_node.position[0] + new_position[0], current_node.position[1] + new_position[1])
