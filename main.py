@@ -18,7 +18,7 @@ Config.set('graphics', 'resizable', True)
 Window.size = (2160 / 4, 2160 / 4)
 dims = Window.size
 Window.clearcolor = (1, 1, 1, 1)
-
+map_dim = 64
 
 class Main_segment(App):
     def build(self):
@@ -52,16 +52,17 @@ class DataHandler():
         # self.items_dict = {'entrance': [(60,30), 0, (-1,-1), (-1,-1)],'check_out':[(23,4), 0, (23,4), (23,4)],
         #  'hammer' : [(20, 50), 0, (20, 50), (20, 50)], 'paint': [(29,10),0,(29,0), (29,25) ],
         #  'wood' : [(8, 40), 1, (8,36), (8,47)], 'nails': [(47,10),0,(47,0), (47,25)], 'saw': [(12,28), 0, (20, 28), (1, 28)]}
-        self.path_finder = PathFinder(dims)
+        self.path_finder = PathFinder(dims, self.items_dict)
         self.path = []
         self.map = map
         self.popup = popup
+        self.window_size = dims
 
     def list_updated(self):
         # print('path')
-        self.path, idx, idx_name,heavy = self.path_finder.find(self.shopping_list)
+        self.path, idx, idx_name,heavy, item_pot = self.path_finder.find(self.shopping_list)
         # print(self.path)
-        self.map.draw(self.path, idx, idx_name, heavy)
+        self.map.draw(self.path, idx, idx_name, heavy, item_pot)
         self.popup.updateList(self)
 
     def add_element(self, element):
@@ -71,7 +72,7 @@ class DataHandler():
         #    size_hint=(None,None),size=(400,400))
         if check_duplicate(self.shopping_list, element):
             temp = Data(element[0], element[1],
-                        element[2], element[3], element[4])
+                        element[2], element[3], element[4], element[5])
             self.shopping_list.append(temp)
             #print('Appending Successfull')
             # for e in self.shopping_list:
@@ -89,12 +90,13 @@ class DataHandler():
 
 
 class Data():
-    def __init__(self, name, pos, heavy, pos_1, pos_2):
+    def __init__(self, name, pos, heavy, pos_1, pos_2, pot_buy):
         self.item_name = name
         self.pos = pos
         self.heavy = heavy
         self.pos_1 = pos_1
         self.pos_2 = pos_2
+        self.pot_buy = pot_buy
 
 
 def check_duplicate(shopping_list, ele):

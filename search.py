@@ -16,7 +16,6 @@ class SearchBar(TextInput):
         self.message_popup = message_popup
         #self.add_widget(DropDown)
         for _, i in enumerate(data_handler.items_dict.items()):
-            
             if _ > 2:
                 print(i)
                 btn = Button(text= i[0], size_hint_y=None, height=20)
