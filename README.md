@@ -67,19 +67,18 @@ In certain conditions the A star alorithm gets trapped, this happens only when t
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/e.PNG)
 
 
-ADDED:
-
-Pop up messages for interactive communication with the customer:
-
+Heavy items are planned to be picked up later on the shopping trip was added.
 
 ![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/7.PNG)
+
+Suggestions on what the customer might need has been added.
+
+![Example Path](https://github.com/Fathaah/Lowe-Path-Finding/blob/master/images/Capture.PNG)
 
 
 ## Known issues
 
-* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given. Selecting Soil first will demonstrate this issue. This is easily solved by letting the program explore more possible routes, this increases the time for finding the path.
-
-* There is small issues with the positioning of items making the route a bit chaotic. 
+* The algorithm fails at certain conditions when the item is directly opposite to the hexagon in the case given. Selecting saw then concrete first will demonstrate this issue. This is easily solved by letting the program explore more possible routes, this increases the time for finding the path.
 
 ## To Do
 
@@ -90,13 +89,8 @@ Pop up messages for interactive communication with the customer:
 - [x] Create new and modified better map.
 - [x] Messages on map like suggestions and detours. 
 - [x] Heavy items are to planned to be picked up later on.
-- [ ] Customer localization.
-- [ ] Reduce the frequency of change in direction, keep the paths straight.
-- [ ] Suggestions on what the customer might need, like if he buys screws it's very likely he might need a screwdriver.
-- [ ] Improve UI, an applications success hugely depends on the interface.
+- [x] Suggestions on what the customer might need, like if he buys screws it's very likely he might need a screwdriver.
 
-## NOTES
 
-Currently the customer localization is implemented in the previous version of the code, through barcode scanning of any nearby items or barcodes specifically designed for localizing the customer in the store. A possibility of a vision based system is being studied, using cues deligently palced in the stores to detect customers current location.
 
 
